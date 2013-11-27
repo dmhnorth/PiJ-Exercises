@@ -53,8 +53,8 @@ public class Mean {
 	
 	
 	public static void main(String[] args) {
-		Mean mn = new Mean();
-		mn.launch();
+		Mean mn = new Mean();	//creating an instance of the class to use the methods
+		mn.launch();	//launching the method that contains the program
 
 	}
 	

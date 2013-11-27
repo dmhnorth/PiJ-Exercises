@@ -43,8 +43,8 @@ public class ResUi implements Runnable{
 	}
 		
 	@Override
-	public void run() {
-		
+	public void run() {		
+
 		try	{
 			Thread.sleep(taskDuration);
 

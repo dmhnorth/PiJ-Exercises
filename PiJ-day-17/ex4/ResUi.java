@@ -2,20 +2,19 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class ResUi implements Runnable{
-	//class that counts as soon as created
 	
-	private static int taskCount;
-	private static int taskDuration;
 	private static ArrayList completeTasks;
+	
+	private int taskDuration;
 	private int id;
 
-	public ResUi(int duration) {
-		this.taskDuration = taskDuration;
+	public ResUi(int duration, int taskCount) {		
+		taskDuration = duration;
 		id = taskCount;
 	}
 
-	public StringBuilder printCompleteTasks() {
-		StringBuilder completeTasksStr = new StringBuilder();
+	public StringBuffer printCompleteTasks() {
+		StringBuffer completeTasksStr = new StringBuffer();
 		
 		for (int i = 0; i < completeTasks.size(); i++) {
 			if (!completeTasks.get(i).equals(0) && completeTasks != null) {
@@ -25,22 +24,7 @@ public class ResUi implements Runnable{
 	} 
 	
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		
-		
-		
-		while (taskCount < 10) {
-			System.out.println("Enter a duration of " + taskCount + ": ");
-			taskDuration = sc.nextInt();
-			ResUi resui = new ResUi(taskDuration);
-			Thread t = new Thread(resui);
-			t.start();
-
-			taskCount++;
-		}
-		sc.close();
-	}
+	
 		
 	@Override
 	public void run() {		
@@ -51,7 +35,6 @@ public class ResUi implements Runnable{
 		}	catch (InterruptedException ex) {
 			//Does nothing, just speeds things up
 		}
-		//ARRAY FOR COMPLETE TASKS
 		if (completeTasks == null) {
 			completeTasks = new ArrayList();
 		}
@@ -62,8 +45,26 @@ public class ResUi implements Runnable{
 		System.out.println("Finished task (singleID): " + (id));
 		System.out.println("List of finished tasks (ArrayList): " + printCompleteTasks());
 		
-		//program that asks for inputs until ten have been made
 		
 	
 	}
+
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int taskCount = 0;
+		
+		while (taskCount < 10) {
+			taskCount++;
+			System.out.println("Enter a duration of " + taskCount + ": ");
+			int taskDuration = sc.nextInt();
+			ResUi resui = new ResUi(taskDuration, taskCount);
+			Thread t = new Thread(resui);
+			t.start();
+
+			
+		}
+		sc.close();
+	}
+
 }

@@ -1,6 +1,5 @@
 import java.util.concurrent.Executor;
 import java.lang.Exception.*;
-import java.util.Queue;
 import java.util.ArrayList;
 
 public class NiceExecutor implements Executor {
@@ -25,11 +24,12 @@ public class NiceExecutor implements Executor {
 	public synchronized void executeTask(){
 	
 	try {
-				
+		
 		for (Runnable t:tasks)
 		{
-			execute(t);	
-		}
+			execute(t);
+			
+		} System.out.println("executeTask method has completed a time");
 	
 		} catch (Exception ex) {
 			System.err.println("This task can't be accepted!");

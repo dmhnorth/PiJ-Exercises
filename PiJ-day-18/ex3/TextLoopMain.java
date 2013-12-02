@@ -21,8 +21,8 @@ public static void main(String args[]) {
 			for (int i = 0; i < 10; i++) {
 				Runnable r = new TextLoop("Thread " + i);
 				myEx1.addTask(r);
-				myEx1.executeTask();	//uses the executor to start the runnable objects
-			} //myEx1.shutdown();	//shuts down the executor
+				
+			} myEx1.executeTask();
 		}
 	}
 	

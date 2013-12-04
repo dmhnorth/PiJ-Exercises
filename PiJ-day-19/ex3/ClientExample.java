@@ -14,18 +14,33 @@ public class ClientExample {
 	
 	
 	
-	Remote service = Naming.lookup("//127.0.0.1:1099/calc");	//assigning a server thats running somewhere
+	Remote service = Naming.lookup("//127.0.0.1:1099/calc");	//assigning a server that's running somewhere
 	CalcService calcService = (CalcService) service;	//casting the server assigned above, AS a DateService, so I can use it in the program below
 	
 	System.out.println("The server is now connected and being used. Enter a calculation: ");	//For reference. The server at this point must now be running
 																		//and if the server is running we can now make calls to it
-	
-	String userInput = sc.nextLine();
-	String recievedAns = calcService.calc(userInput);	//this is using the service to see what the date is, assigning a string for recievedCalc
-	System.out.println("The string assigned at the server side for recievedAns is: " + recievedAns);
-	
-	
-	} catch (Exception ex) {
+    String userInput;
+    String receivedAns;
+        do {
+	userInput = sc.nextLine();
+
+            if ((userInput.equals("End") || (userInput.equals("end"))))  {
+                receivedAns = "End";
+            } else {
+                try {
+                receivedAns = calcService.calc(userInput);	//this is using the service to see what the date is, assigning a string for receivedCalc
+                System.out.println(receivedAns + ", Please enter another ('End' to exit): ");
+                } catch (Exception ex) {
+                    System.out.println("That was not a calculation, or you have a typo.");
+                    receivedAns = "";
+                }
+
+            }
+
+    } while (!receivedAns.equals("End"));
+        System.out.println("You have exited.");
+
+    } catch (Exception ex) {
 		System.err.println("There's been a problem");
 		ex.printStackTrace();
 	

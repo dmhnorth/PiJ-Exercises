@@ -4,7 +4,7 @@ public class CommandLineCalc {
 	public String calculate(String userEntry) {
 	
 		String num1str = "";
-		int num1 = 0, num2 = 0;
+		double num1 = 0, num2;
 
 
                                //change to StringBuffer
@@ -19,12 +19,12 @@ public class CommandLineCalc {
 					//this is purely an exception so spaces are ignored
 			} else
 			{
-					num1 = Integer.parseInt(num1str);
+					num1 = Double.parseDouble(num1str);
 					num1str = "";
 			}
 
 		}
-	num2 = Integer.parseInt(num1str);
+	num2 = Double.parseDouble(num1str);
 
 	String answer = "End";
 
